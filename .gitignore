@@ -4,3 +4,6 @@
 config.yml
 usernames.json
 user_ids.json
+
+.rvmrc
+.idea/

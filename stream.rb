@@ -21,7 +21,7 @@ def process_tweet(logger, tweet)
     # Slack auto-expands twitter URLs so we only need to send the URL.
     # We can set the "display text" of the URL to a space character, which
     # makes Slack render only the embedded tweet which is much cleaner.
-    msg_text = "<https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}| >"
+    msg_text = "<https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}>"
 
     logger.debug ''
     logger.debug msg_text
@@ -32,7 +32,8 @@ def process_tweet(logger, tweet)
       :body => {
         :text => msg_text,
         :username => tweet.user.screen_name,
-        :icon_url => tweet.user.profile_image_url
+        :icon_url => tweet.user.profile_image_url,
+        :unfurl_links => true
       }.to_json,
       :headers => { 'Content-Type' => 'application/json' }
     }
